@@ -1,6 +1,6 @@
 import Sidebar from "./components/structured/Sidebar";
 import { Route, Routes } from "react-router";
-import Summary from "./pages/summary";
+import Summary from "./pages/Summary";
 import NotFound from "./pages/NotFound";
 import ComingSoon from "./pages/ComingSoon";
 import ChatBot from "./components/structured/ChatBot";
