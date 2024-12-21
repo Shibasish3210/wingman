@@ -88,11 +88,13 @@ const OrdersTable = () => {
 				</div>
 			</div>
 			<div className="overflow-x-auto  rounded-md border border-[#DCDFE4]">
-				<table className="w-full text-left ">
+				<table className="whitespace-nowrap w-full text-left ">
 					<thead className="border-b border-[#DCDFE4]">
 						<tr className="text-text_disabled text-sm">
 							<th className="p-2 font-normal">Product</th>
-							<th className="p-2 font-normal">Date</th>
+							<th className="p-2 font-normal text-center sm:text-left">
+								Date
+							</th>
 							<th className="p-2 font-normal">Time Spent</th>
 							<th className="p-2 font-normal">Order Value</th>
 							<th className="p-2 font-normal">Commission</th>
@@ -120,13 +122,13 @@ const OrdersTable = () => {
 												<span>{order.name}</span>
 											</div>
 										</td>
-										<td className="p-2 flex flex-col gap-1">
-											<span>
+										<td className="p-2 flex flex-col gap-1 ml-3 sm:ml-0">
+											<span className="block min-w-fit">
 												{moment(order.date).format(
 													"DD-MM-YYYY",
 												)}
 											</span>
-											<span className="text-xs">
+											<span className="text-xs block min-w-fit">
 												{moment(order.date).format(
 													"hh : mm A",
 												)}
@@ -146,7 +148,7 @@ const OrdersTable = () => {
 							: null}
 					</tbody>
 				</table>
-				<div className="flex justify-center items-center gap-4 w-full p-2">
+				<div className="flex justify-center items-center gap-4 w-full min-w-fit p-2">
 					<button onClick={() => handlePreviousPage()}>
 						<img
 							className="rotate-90 text-secondary-filter"

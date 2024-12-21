@@ -37,7 +37,7 @@ const mockData = {
 
 const Dashboard = () => {
 	return (
-		<div className="flex flex-col lg:flex-row gap-8 p-8">
+		<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
 			{/* Consultations Chart */}
 			<div className="bg-white p-6 rounded-lg shadow-md min-w-[45%] flex-1 ">
 				<h3 className="text-lg flex gap-2 pl-8 font-semibold mb-4">
@@ -72,7 +72,7 @@ const Dashboard = () => {
 				</ResponsiveContainer>
 			</div>
 
-			<div className="flex flex-1 gap-2">
+			<div className="grid grid-cols-1 md:grid-cols-2">
 				{/* VS Past Period Chart */}
 				<div className="bg-white p-6 rounded-lg shadow-md min-w-[55%] flex-1">
 					<h3 className="text-lg flex gap-2 font-semibold mb-4 pl-8">
