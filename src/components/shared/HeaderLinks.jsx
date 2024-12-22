@@ -1,5 +1,5 @@
-import React from "react";
 import { NavLink } from "react-router";
+import PropTypes from "prop-types";
 
 const HeaderLinks = ({ icon, text, path }) => {
 	return (
@@ -13,6 +13,11 @@ const HeaderLinks = ({ icon, text, path }) => {
 			{text && <p>{text}</p>}
 		</NavLink>
 	);
+};
+HeaderLinks.propTypes = {
+	icon: PropTypes.node,
+	text: PropTypes.string,
+	path: PropTypes.string.isRequired,
 };
 
 export default HeaderLinks;

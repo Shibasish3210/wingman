@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import PropTypes from "prop-types";
 import DropdownIcon from "../../assets/shared/dropdown.svg";
-import { DropDownContext } from "../../context/DropDownContext";
-import { ProductContext } from "../../context/ProductContext";
+import { DropDownContext, ProductContext } from "../../context/contexts";
 
 const Dropdown = ({ type }) => {
 	const { state, dispatch: dispatchDropdown } = useContext(DropDownContext);
@@ -81,6 +81,9 @@ const Dropdown = ({ type }) => {
 			)}
 		</div>
 	);
+};
+Dropdown.propTypes = {
+	type: PropTypes.string.isRequired,
 };
 
 export default Dropdown;

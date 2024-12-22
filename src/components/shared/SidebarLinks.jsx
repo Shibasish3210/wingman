@@ -1,5 +1,5 @@
-import React from "react";
 import { NavLink } from "react-router";
+import PropTypes from "prop-types";
 
 const SidebarLinks = ({ icon, path }) => {
 	return (
@@ -7,6 +7,10 @@ const SidebarLinks = ({ icon, path }) => {
 			{icon}
 		</NavLink>
 	);
+};
+SidebarLinks.propTypes = {
+	icon: PropTypes.node.isRequired,
+	path: PropTypes.string.isRequired,
 };
 
 export default SidebarLinks;

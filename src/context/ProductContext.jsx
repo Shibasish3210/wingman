@@ -1,5 +1,7 @@
-import { createContext, useMemo, useReducer } from "react";
+import { useMemo, useReducer } from "react";
+import PropTypes from "prop-types";
 import products from "./data.js";
+import { ProductContext } from "./contexts.jsx";
 
 let rawProducts = products.toSorted((a, b) => a.name.localeCompare(b.name));
 
@@ -111,7 +113,6 @@ const ProductReducer = (state, action) => {
 			return state;
 	}
 };
-export const ProductContext = createContext(null);
 
 const ProductContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(ProductReducer, InitialState);
@@ -125,6 +126,9 @@ const ProductContextProvider = ({ children }) => {
 			{children}
 		</ProductContext.Provider>
 	);
+};
+ProductContextProvider.propTypes = {
+	children: PropTypes.node.isRequired,
 };
 
 export default ProductContextProvider;

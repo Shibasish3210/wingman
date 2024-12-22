@@ -1,4 +1,6 @@
-import { createContext, useMemo, useReducer } from "react";
+import { useMemo, useReducer } from "react";
+import PropTypes from "prop-types";
+import { DropDownContext } from "./contexts";
 
 const possibleSortingOrders = ["Name", "Date", "Order_Value", "Commission"];
 const possibleTimeOptions = [
@@ -63,8 +65,6 @@ const DropDownReducer = (state, action) => {
 	}
 };
 
-export const DropDownContext = createContext(null);
-
 const DropDownContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(DropDownReducer, InitialState);
 	const ContextValue = useMemo(
@@ -77,6 +77,9 @@ const DropDownContextProvider = ({ children }) => {
 			{children}
 		</DropDownContext.Provider>
 	);
+};
+DropDownContextProvider.propTypes = {
+	children: PropTypes.node.isRequired,
 };
 
 export default DropDownContextProvider;

@@ -1,22 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Dropdown from "./shared/Dropdown";
-import { ProductContext } from "../context/ProductContext";
 import DropdownIcon from "../assets/shared/dropdown.svg";
 import Increase from "../assets/shared/increase.svg";
 import Decrease from "../assets/shared/decrease.svg";
 import moment from "moment";
-import { DropDownContext } from "../context/DropDownContext";
+import { DropDownContext, ProductContext } from "../context/contexts";
 
 const OrdersTable = () => {
 	const { state, dispatch } = useContext(ProductContext);
 	const { state: dropDownState } = useContext(DropDownContext);
-	// const [isAscending, setIsAscending] = useState(true);
 
 	const { loading, products, totalLength, currentPage, isAscending } = state;
 
 	useEffect(() => {
 		dispatch({ type: "FETCH_INITIAL_PRODUCTS" });
-	}, []);
+	}, [dispatch]);
 
 	const handlePageChange = (index) => {
 		const pageNumber = index + 1;
@@ -44,12 +42,10 @@ const OrdersTable = () => {
 	};
 
 	const toggleSortOrder = () => {
-		// setIsAscending(!isAscending);
 		const { sort } = dropDownState;
 		const sortOrder = isAscending ? "DESC" : "ASC";
 
 		const type = `SORT_${sort.selectedValue.toUpperCase()}_${sortOrder}`;
-		console.log(type);
 		dispatch({
 			type,
 		});

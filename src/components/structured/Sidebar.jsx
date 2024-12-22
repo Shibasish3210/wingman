@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../../assets/sidebar/logo.svg";
 import Settings from "../../assets/sidebar/settings.svg";
 import Home from "../../assets/sidebar/home.svg";

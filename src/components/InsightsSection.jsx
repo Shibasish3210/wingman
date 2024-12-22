@@ -1,4 +1,3 @@
-import React from "react";
 import ChatIcon from "../assets/shared/chat.svg";
 import BarGraph from "../assets/shared/bargraph.svg";
 import Increase from "../assets/shared/increase.svg";

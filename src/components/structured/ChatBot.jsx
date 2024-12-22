@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Chat from "../../assets/header/chat.svg";
 import Send from "../../assets/shared/send.svg";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -11,7 +11,7 @@ const ChatBot = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [messages, setMessages] = useState([]);
 	const messagesEndRef = useRef(null);
-	const [input, setInput] = useState("");
+	const inputRef = useRef(null);
 
 	const toggleChat = () => {
 		setIsOpen(!isOpen);
@@ -24,7 +24,7 @@ const ChatBot = () => {
 		]);
 	};
 
-	const handleUserMessage = async (text) => {
+	const handleUserMessage = useCallback(async (text) => {
 		addMessage("You", text);
 		setIsLoading(true);
 		try {
@@ -34,34 +34,37 @@ const ChatBot = () => {
 			console.error(error);
 		}
 		setIsLoading(false);
-	};
+	}, []);
 
-	const handleEnterKey = (e) => {
-		if (e.key === "Enter") {
-			handleSend();
-		}
-	};
 	const handleEscapeKey = (e) => {
 		if (e.key === "Escape") {
 			toggleChat();
 		}
 	};
 
-	const handleSend = () => {
-		if (input.trim() === "") {
+	const handleSend = useCallback(() => {
+		if (inputRef.current.value.trim() === "") {
 			return;
 		}
-		handleUserMessage(input);
-		setInput("");
-	};
+		handleUserMessage(inputRef.current.value);
+		inputRef.current.value = "";
+	}, [handleUserMessage]);
+
+	const handleEnterKey = useCallback(
+		(e) => {
+			if (e.key === "Enter") {
+				handleSend();
+			}
+		},
+		[handleSend],
+	);
 
 	useEffect(() => {
 		window.addEventListener("keydown", handleEnterKey);
 		return () => {
 			window.removeEventListener("keydown", handleEnterKey);
-			window.removeEventListener("keydown", handleEscapeKey);
 		};
-	}, []);
+	}, [handleEnterKey]);
 
 	useEffect(() => {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -120,10 +123,7 @@ const ChatBot = () => {
 					<div className="flex p-2">
 						<input
 							type="text"
-							value={input}
-							onChange={(e) => {
-								setInput(e.target.value);
-							}}
+							ref={inputRef}
 							className="flex-1 p-2 border border-[#DCDFE4] rounded outline-none ring ring-opacity-0 focus:ring focus:ring-opacity-100"
 							onKeyDown={(e) => {
 								if (e.key === "Enter") {

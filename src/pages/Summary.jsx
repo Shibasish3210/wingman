@@ -1,4 +1,3 @@
-import React from "react";
 import StatsCards from "../components/StatsCards";
 import InsightsSection from "../components/InsightsSection";
 import OrdersTable from "../components/OrdersTable";

@@ -76,7 +76,6 @@ Wingman Store is a modern e-commerce dashboard application built with React and 
 
 ```plaintext
 wingman/
-├── dist/
 ├── node_modules/
 ├── public/
 ├── src/
